@@ -16,6 +16,7 @@ from Keys_Excel.Log.logs import logger
 log = logger()
 
 
+
 def read_excel(file_path=None, _sheet_index=None, _have_title=True):
     """
     读取测试用例并执行
@@ -52,6 +53,7 @@ def read_excel(file_path=None, _sheet_index=None, _have_title=True):
                 # 增加判断，如果是断言，则把预期结果也加到参数中
                 if 'assert' in value[1]:
                     excel_data['param']['txt'] = value[4]
+                # 参数如果不为空
                 if value[2]:
                     for param in value[2].split(';'):
                         key_ = param.split('=')[0]

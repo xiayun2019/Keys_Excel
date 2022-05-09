@@ -6,16 +6,22 @@
 # @Software : PyCharm
 import os
 
-from Keys_Excel.RunTest.RunTestCases import run_testcases
 
+from Keys_Excel.RunTest.RunTestCases import RunTestCases
 
 def run():
     # 自动搜索含testcases的用例
+
+    rtc = RunTestCases()
     for r, d, fs in os.walk('./testcases'):
         for f in fs:
             if 'testcases' in f:
                 print(os.path.join(r, f))
-                run_testcases(os.path.join(r, f))
+                rtc.run_testcases(os.path.join(r, f),reRunNum=1)
+    print('共执行{}条用例，成功用例数:{},失败用例数:{},成功率:{}%'.format(rtc.passCases_num + rtc.failedCases_num,
+                                                      rtc.passCases_num,
+                                                      rtc.failedCases_num,
+                                                      rtc.passCases_num*100 / (rtc.passCases_num + rtc.failedCases_num)))
     # run_testcases(r'./testcases/testcases.xlsx')
 
 
